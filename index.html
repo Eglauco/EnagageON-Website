@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EngageON — Gestão de Engajamento</title>
+  <meta name="description" content="Plataforma de engajamento e retenção criada para o trabalhador operacional. Micro perguntas de segundos, rituais simples para o líder e sinais em tempo real para o RH." />
+  <meta property="og:title" content="EngageON — Gestão de Engajamento" />
+  <meta property="og:description" content="Reter gente boa não é sorte. É perceber a tempo." />
+  <meta property="og:image" content="assets/EngageON-blue-white-logo.png" />
+  <link rel="icon" type="image/png" href="assets/EngageON-blue-white-logo.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- ========== PRELOADER ========== -->
+  <div class="preloader" id="preloader">
+    <div class="preloader__inner">
+      <img class="preloader__logo" src="assets/EngageON-blue-white-logo.png" alt="EngageON" />
+      <svg class="preloader__pulse" viewBox="0 0 320 80" fill="none" aria-hidden="true">
+        <path id="preloaderPath" d="M0 40 H90 L104 40 112 18 124 62 136 30 144 40 H150 L158 40 166 8 180 70 194 26 202 40 H320"
+          stroke="url(#pulseGrad)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <defs>
+          <linearGradient id="pulseGrad" x1="0" y1="0" x2="320" y2="0" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#465FFF"/>
+            <stop offset="1" stop-color="#9B6BFF"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <div class="preloader__counter"><span id="preloaderCount">0</span>%</div>
+    </div>
+  </div>
+
+  <!-- ========== CURSOR ========== -->
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+
+  <!-- ========== PROGRESS BAR ========== -->
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <!-- ========== NAV ========== -->
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="#hero" class="nav__logo" data-scrollto>
+        <img src="assets/EngageON-blue-white-logo.png" alt="EngageON — página inicial" />
+      </a>
+      <nav class="nav__links" aria-label="Navegação principal">
+        <a href="#oque" data-scrollto data-magnetic>O que é</a>
+        <a href="#app" data-scrollto data-magnetic>Funcionalidades</a>
+        <a href="#risco" data-scrollto data-magnetic>Painel de risco</a>
+        <a href="#porque" data-scrollto data-magnetic>Por quê</a>
+      </nav>
+      <div class="nav__tag mono">GESTÃO DE ENGAJAMENTO</div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ========== HERO ========== -->
+    <section class="hero" id="hero">
+      <div class="hero__bg" aria-hidden="true">
+        <div class="hero__orb hero__orb--1"></div>
+        <div class="hero__orb hero__orb--2"></div>
+        <div class="hero__grid"></div>
+      </div>
+
+      <div class="container hero__content">
+        <p class="eyebrow hero__eyebrow"><span class="eyebrow__dot"></span>ENGAGEON — PLATAFORMA DE ENGAJAMENTO E RETENÇÃO</p>
+        <h1 class="hero__title">
+          <span class="hero__line">Reter gente boa</span>
+          <span class="hero__line">não é sorte.</span>
+          <span class="hero__line hero__line--accent"><span class="grad-text">É perceber a tempo.</span></span>
+        </h1>
+        <p class="hero__sub">Criada para o trabalhador operacional: micro perguntas de segundos no celular,
+        rituais simples para o líder e sinais em tempo real para o RH — para agir antes do risco de saída.</p>
+      </div>
+
+      <canvas class="hero__canvas" id="heroCanvas" aria-hidden="true"></canvas>
+
+      <div class="hero__scrollcue" aria-hidden="true">
+        <span class="mono">ROLE PARA EXPLORAR</span>
+        <span class="hero__scrollline"></span>
+      </div>
+    </section>
+
+    <!-- ========== MARQUEE ========== -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track" id="marqueeTrack">
+        <div class="marquee__group">
+          <span>Micro perguntas de segundos</span><i>◆</i>
+          <span>Sinais em tempo real</span><i>◆</i>
+          <span>Rituais simples para o líder</span><i>◆</i>
+          <span>Agir antes do risco</span><i>◆</i>
+        </div>
+        <div class="marquee__group">
+          <span>Micro perguntas de segundos</span><i>◆</i>
+          <span>Sinais em tempo real</span><i>◆</i>
+          <span>Rituais simples para o líder</span><i>◆</i>
+          <span>Agir antes do risco</span><i>◆</i>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== O QUE É ========== -->
+    <section class="section oque" id="oque">
+      <div class="container oque__layout">
+        <div class="oque__sticky">
+          <p class="eyebrow" data-reveal><span class="eyebrow__dot"></span>O QUE É</p>
+          <h2 class="section__title" data-reveal>Uma camada de <em>escuta contínua</em> na sua operação.</h2>
+          <p class="section__sub" data-reveal>O EngageON conecta três pontas da empresa em um mesmo fluxo de sinais —
+          sem formulário longo, sem fricção, sem esperar a pesquisa anual.</p>
+        </div>
+
+        <div class="oque__cards">
+          <article class="oque__card" data-reveal>
+            <span class="oque__chip mono">COLABORADOR</span>
+            <h3>Perguntas de segundos, no celular</h3>
+            <p>Micro perguntas rápidas que cabem em qualquer intervalo de turno.
+            Responder vira hábito — e cada resposta vira um sinal.</p>
+          </article>
+          <article class="oque__card" data-reveal>
+            <span class="oque__chip mono">LÍDER</span>
+            <h3>Rituais simples de reconhecimento</h3>
+            <p>Medalhas entregues a quem merece, no momento em que acontece.
+            Reconhecer deixa de depender de memória ou planilha.</p>
+          </article>
+          <article class="oque__card" data-reveal>
+            <span class="oque__chip mono">RH</span>
+            <h3>Sinais em tempo real</h3>
+            <p>O risco de saída aparece colaborador a colaborador, enquanto ainda
+            dá tempo de reverter — não no relatório do ano seguinte.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== APP SHOWCASE (PINNED) ========== -->
+    <section class="section showcase" id="app">
+      <div class="showcase__pin" id="showcasePin">
+        <div class="container showcase__layout">
+
+          <div class="showcase__text">
+            <p class="eyebrow"><span class="eyebrow__dot"></span>FUNCIONALIDADES</p>
+
+            <div class="showcase__steps">
+              <div class="showcase__step is-active" data-step="0">
+                <img class="showcase__stepimg" src="assets/app01.png" alt="" loading="lazy" />
+                <h3>Engajar vira jogo</h3>
+                <p>XP, pontos e patentes: o colaborador evolui de patente conforme responde,
+                conquista e acumula medalhas. O progresso é dele — e ele vê.</p>
+              </div>
+              <div class="showcase__step" data-step="1">
+                <img class="showcase__stepimg" src="assets/app02.png" alt="" loading="lazy" />
+                <h3>Micro perguntas de segundos</h3>
+                <p>Uma pergunta objetiva, quatro toques possíveis, alguns segundos.
+                Sem atrapalhar o turno — e cada resposta alimenta o termômetro do RH.</p>
+              </div>
+              <div class="showcase__step" data-step="2">
+                <img class="showcase__stepimg" src="assets/app03.png" alt="" loading="lazy" />
+                <h3>Medalhas de verdade</h3>
+                <p>Pontualidade, assiduidade, inovação, destaque: reconhecimentos que o líder
+                entrega a quem merece, com XP e pontos junto.</p>
+              </div>
+              <div class="showcase__step" data-step="3">
+                <img class="showcase__stepimg" src="assets/app04.png" alt="" loading="lazy" />
+                <h3>Pontos viram presente real</h3>
+                <p>Na loja, o próprio colaborador escolhe a recompensa: cinema, jantar,
+                eletrônicos, viagem. Esforço reconhecido vira algo concreto.</p>
+              </div>
+            </div>
+
+            <div class="showcase__progress" aria-hidden="true">
+              <span class="is-active"></span><span></span><span></span><span></span>
+            </div>
+          </div>
+
+          <div class="showcase__phone">
+            <div class="showcase__glow" aria-hidden="true"></div>
+            <img class="showcase__img is-active" src="assets/app01.png" alt="Tela inicial do app EngageON com anel de XP, patente Avançado e pontos para resgatar" />
+            <img class="showcase__img" src="assets/app02.png" alt="Micro pergunta de feedback no app: Seu líder te explicou bem sua função?" />
+            <img class="showcase__img" src="assets/app03.png" alt="Lista de medalhas recebidas no app: inovação, pontualidade, destaque e assiduidade" />
+            <img class="showcase__img" src="assets/app04.png" alt="Loja de recompensas no app com pontos disponíveis para resgate" />
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== PAINEL DE RISCO ========== -->
+    <section class="section risco" id="risco">
+      <div class="container">
+        <div class="risco__head">
+          <p class="eyebrow" data-reveal><span class="eyebrow__dot"></span>O DIFERENCIAL</p>
+          <h2 class="section__title" data-reveal>O risco de saída, <em>visível antes</em> da saída.</h2>
+          <p class="section__sub" data-reveal>Cada resposta alimenta o termômetro individual de engajamento.
+          O RH deixa de reagir ao desligamento e passa a priorizar onde a intervenção ainda funciona.</p>
+        </div>
+
+        <div class="panel" id="riskPanel" data-reveal>
+          <div class="panel__bar">
+            <div class="panel__title mono"><span class="panel__live"></span>PAINEL DE RISCO — TEMPO REAL</div>
+            <div class="panel__meta mono">4 COLABORADORES · SETOR OPERAÇÕES</div>
+          </div>
+
+          <div class="panel__body">
+            <div class="panel__scan" aria-hidden="true"></div>
+
+            <div class="panel__row" data-level="ok" data-pct="92">
+              <span class="panel__rank mono">01</span>
+              <span class="panel__avatar">JS</span>
+              <div class="panel__info">
+                <span class="panel__name">Juliana Silva</span>
+                <div class="panel__trackbar"><div class="panel__fill"></div></div>
+              </div>
+              <span class="panel__pct mono"><b>0</b>%</span>
+              <span class="panel__status">ENGAJADA</span>
+            </div>
+
+            <div class="panel__row" data-level="warn" data-pct="58">
+              <span class="panel__rank mono">02</span>
+              <span class="panel__avatar">AA</span>
+              <div class="panel__info">
+                <span class="panel__name">Alexandre Aronowitz</span>
+                <div class="panel__trackbar"><div class="panel__fill"></div></div>
+              </div>
+              <span class="panel__pct mono"><b>0</b>%</span>
+              <span class="panel__status">ALERTA</span>
+            </div>
+
+            <div class="panel__row" data-level="risk" data-pct="24">
+              <span class="panel__rank mono">03</span>
+              <span class="panel__avatar">RM</span>
+              <div class="panel__info">
+                <span class="panel__name">Rosa Maria</span>
+                <div class="panel__trackbar"><div class="panel__fill"></div></div>
+                <span class="panel__action mono">→ AÇÃO SUGERIDA: CONVERSA 1:1 HOJE</span>
+              </div>
+              <span class="panel__pct mono"><b>0</b>%</span>
+              <span class="panel__status">RISCO</span>
+            </div>
+
+            <div class="panel__row" data-level="ok" data-pct="88">
+              <span class="panel__rank mono">04</span>
+              <span class="panel__avatar">MN</span>
+              <div class="panel__info">
+                <span class="panel__name">Murilo Nascimento</span>
+                <div class="panel__trackbar"><div class="panel__fill"></div></div>
+              </div>
+              <span class="panel__pct mono"><b>0</b>%</span>
+              <span class="panel__status">ENGAJADO</span>
+            </div>
+          </div>
+
+          <div class="panel__legend mono">
+            <span><i class="dot dot--ok"></i>ENGAJADO</span>
+            <span><i class="dot dot--warn"></i>ALERTA</span>
+            <span><i class="dot dot--risk"></i>RISCO</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== POR QUÊ ========== -->
+    <section class="section porque" id="porque">
+      <div class="container">
+        <p class="eyebrow" data-reveal><span class="eyebrow__dot"></span>POR QUE TER ENGAGEON</p>
+        <h2 class="section__title" data-reveal>Esperar o desligamento é o <em>jeito mais caro</em> de descobrir o problema.</h2>
+
+        <div class="porque__grid">
+          <article class="stat" data-reveal>
+            <div class="stat__num mono"><span class="stat__count" data-count="6">0</span><span class="stat__unit">salários</span></div>
+            <h3>Cada saída custa caro</h3>
+            <p>Repor um colaborador pode custar meses de produtividade que a operação
+            já pagou — recrutamento, treinamento e curva de aprendizado.</p>
+          </article>
+          <article class="stat" data-reveal>
+            <div class="stat__num mono"><span class="stat__count" data-count="365">0</span><span class="stat__unit">dias</span></div>
+            <h3>Pesquisa anual chega tarde</h3>
+            <p>É o intervalo típico entre uma pesquisa de clima e outra. Quando o resultado
+            sai, quem estava insatisfeito já pediu demissão ou desistiu.</p>
+          </article>
+          <article class="stat" data-reveal>
+            <div class="stat__num mono"><span class="stat__count" data-count="15">0</span><span class="stat__unit">segundos</span></div>
+            <h3>Dados reais, decisões rápidas</h3>
+            <p>É o que uma micro pergunta leva. O sinal chega ao RH no mesmo dia —
+            e a intervenção acontece enquanto ainda funciona.</p>
+          </article>
+        </div>
+        <p class="porque__note mono" data-reveal>* NÚMEROS ILUSTRATIVOS DE REFERÊNCIA DE MERCADO</p>
+      </div>
+    </section>
+
+    <!-- ========== PORTAL ========== -->
+    <section class="section portal" id="portal">
+      <div class="container portal__layout">
+        <div class="portal__text">
+          <p class="eyebrow" data-reveal><span class="eyebrow__dot"></span>PORTAL DO RH</p>
+          <h2 class="section__title" data-reveal>Tudo em um painel <em>feito para decidir</em>.</h2>
+          <p class="section__sub" data-reveal>Engajamento por categoria, pontuação, patentes e o termômetro
+          individual de cada colaborador — atualizados a cada resposta, sem planilha e sem espera.</p>
+          <ul class="portal__list" data-reveal>
+            <li>Engajamento por categoria e por peso</li>
+            <li>Termômetro individual de engajamento</li>
+            <li>Histórico de medalhas, pontos e recompensas</li>
+          </ul>
+        </div>
+        <div class="portal__media" data-reveal>
+          <div class="portal__halo" aria-hidden="true"></div>
+          <img src="assets/portal01.png" alt="Mãos segurando um tablet com o portal do RH EngageON, mostrando engajamento por categoria e engajamento total" data-parallax="-8" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== QUOTE FINAL ========== -->
+    <section class="section quote" id="quote">
+      <div class="container">
+        <p class="quote__text" id="quoteText">Agir antes. Reverter a tempo. Reter quem faz a operação acontecer.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <img class="footer__logo" src="assets/EngageON-blue-white-logo.png" alt="EngageON" />
+      <p class="footer__tagline">Reter gente boa não é sorte. É perceber a tempo.</p>
+      <div class="footer__base mono">
+        <span>© 2026 ENGAGEON</span>
+        <span>GESTÃO DE ENGAJAMENTO</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
