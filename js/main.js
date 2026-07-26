@@ -341,43 +341,94 @@
   }
 
   /* ------------------------------------------------------------
-     Showcase — troca de telas do app (pinned)
+     Showcase — carrossel de funcionalidades
+     (setas laterais, barra clicável, auto-play e swipe)
   ------------------------------------------------------------ */
+  const showcaseEl = document.getElementById("showcasePin");
   const steps = gsap.utils.toArray(".showcase__step");
   const phones = gsap.utils.toArray(".showcase__img");
+  const segBtns = gsap.utils.toArray(".showcase__seg");
   const segs = gsap.utils.toArray(".showcase__seg i");
   const stepNow = document.getElementById("stepNow");
-  let currentStep = 0;
+
+  const AUTO_SECONDS = 7;
+  let current = 0;
+  let timer = null;      // tween da barra que cronometra o auto-play
+  let inView = false;
+  let hovering = false;
 
   function setStep(i) {
-    if (i === currentStep) return;
-    currentStep = i;
-    steps.forEach((s, k) => s.classList.toggle("is-active", k === i));
-    phones.forEach((p, k) => p.classList.toggle("is-active", k === i));
-    if (stepNow) stepNow.textContent = String(i + 1).padStart(2, "0");
+    current = (i + steps.length) % steps.length; // loop infinito
+    steps.forEach((s, k) => s.classList.toggle("is-active", k === current));
+    phones.forEach((p, k) => p.classList.toggle("is-active", k === current));
+    if (stepNow) stepNow.textContent = String(current + 1).padStart(2, "0");
+    // segmentos anteriores cheios, seguintes vazios; o atual é preenchido pelo timer
+    segs.forEach((seg, k) => gsap.set(seg, { scaleX: k < current ? 1 : 0 }));
+    if (prefersReduced) gsap.set(segs[current], { scaleX: 1 });
   }
 
-  const mm = gsap.matchMedia();
-  mm.add("(prefers-reduced-motion: no-preference)", () => {
-    const st = ScrollTrigger.create({
-      trigger: "#showcasePin",
-      start: "top top",
-      end: "+=" + steps.length * 90 + "%",
-      pin: true,
-      scrub: false,
-      onUpdate: (self) => {
-        const p = self.progress;
-        const i = Math.min(steps.length - 1, Math.floor(p * steps.length));
-        setStep(i);
-        // cada segmento preenche durante a etapa correspondente
-        segs.forEach((seg, k) => {
-          const fill = Math.max(0, Math.min(1, p * steps.length - k));
-          gsap.set(seg, { scaleX: fill });
-        });
-      },
+  function startTimer() {
+    if (prefersReduced) return;
+    if (timer) timer.kill();
+    timer = gsap.fromTo(segs[current], { scaleX: 0 }, {
+      scaleX: 1,
+      duration: AUTO_SECONDS,
+      ease: "none",
+      onComplete: () => go(current + 1),
     });
-    return () => st.kill();
+    if (!inView || hovering) timer.pause();
+  }
+
+  function go(i) {
+    setStep(i);
+    startTimer();
+  }
+
+  document.getElementById("prevStep").addEventListener("click", () => go(current - 1));
+  document.getElementById("nextStep").addEventListener("click", () => go(current + 1));
+  segBtns.forEach((btn, k) => btn.addEventListener("click", () => go(k)));
+
+  // auto-play só roda com a seção visível
+  ScrollTrigger.create({
+    trigger: showcaseEl,
+    start: "top 75%",
+    end: "bottom 25%",
+    onToggle: (self) => {
+      inView = self.isActive;
+      if (!timer) { if (inView) startTimer(); return; }
+      if (inView) timer.play();
+      else timer.pause();
+    },
   });
+
+  // pausa enquanto o mouse está sobre a seção
+  showcaseEl.addEventListener("mouseenter", () => {
+    hovering = true;
+    if (timer) timer.pause();
+  });
+  showcaseEl.addEventListener("mouseleave", () => {
+    hovering = false;
+    if (timer && inView) timer.play();
+  });
+
+  // swipe no touch (horizontal troca; vertical continua rolando a página)
+  let touchX = 0, touchY = 0;
+  showcaseEl.addEventListener("touchstart", (e) => {
+    touchX = e.touches[0].clientX;
+    touchY = e.touches[0].clientY;
+    if (timer) timer.pause();
+  }, { passive: true });
+  showcaseEl.addEventListener("touchend", (e) => {
+    const dx = e.changedTouches[0].clientX - touchX;
+    const dy = e.changedTouches[0].clientY - touchY;
+    if (Math.abs(dx) > 48 && Math.abs(dx) > Math.abs(dy)) {
+      go(dx < 0 ? current + 1 : current - 1);
+    } else if (timer && inView) {
+      timer.play();
+    }
+  }, { passive: true });
+
+  setStep(0);
 
   /* ------------------------------------------------------------
      Painel de risco — barras + contadores

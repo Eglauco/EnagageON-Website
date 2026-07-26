@@ -149,25 +149,21 @@
 
             <div class="showcase__steps">
               <div class="showcase__step is-active" data-step="0">
-                <img class="showcase__stepimg" src="assets/app01.png" alt="" loading="lazy" />
                 <h3>Engajar vira jogo</h3>
                 <p>XP, pontos e patentes: o colaborador evolui de patente conforme responde,
                 conquista e acumula medalhas. O progresso é dele — e ele vê.</p>
               </div>
               <div class="showcase__step" data-step="1">
-                <img class="showcase__stepimg" src="assets/app02.png" alt="" loading="lazy" />
                 <h3>Micro perguntas de segundos</h3>
                 <p>Uma pergunta objetiva, quatro toques possíveis, alguns segundos.
                 Sem atrapalhar o turno — e cada resposta alimenta o termômetro do RH.</p>
               </div>
               <div class="showcase__step" data-step="2">
-                <img class="showcase__stepimg" src="assets/app03.png" alt="" loading="lazy" />
                 <h3>Medalhas de verdade</h3>
                 <p>Pontualidade, assiduidade, inovação, destaque: reconhecimentos que o líder
                 entrega a quem merece, com XP e pontos junto.</p>
               </div>
               <div class="showcase__step" data-step="3">
-                <img class="showcase__stepimg" src="assets/app04.png" alt="" loading="lazy" />
                 <h3>Pontos viram presente real</h3>
                 <p>Na loja, o próprio colaborador escolhe a recompensa: cinema, jantar,
                 eletrônicos, viagem. Esforço reconhecido vira algo concreto.</p>
@@ -186,13 +182,20 @@
 
         </div>
 
-        <div class="showcase__bar" aria-hidden="true">
-          <div class="showcase__barlabel mono"><span id="stepNow">01</span>/04<span class="showcase__hint"> · ROLE PARA AVANÇAR</span></div>
+        <button class="showcase__arrow showcase__arrow--prev" id="prevStep" type="button" aria-label="Funcionalidade anterior">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 4 7 12l8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="showcase__arrow showcase__arrow--next" id="nextStep" type="button" aria-label="Próxima funcionalidade">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 4 8 8-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+
+        <div class="showcase__bar">
+          <div class="showcase__barlabel mono" aria-hidden="true"><span id="stepNow">01</span>/04</div>
           <div class="showcase__segments">
-            <span class="showcase__seg"><i></i></span>
-            <span class="showcase__seg"><i></i></span>
-            <span class="showcase__seg"><i></i></span>
-            <span class="showcase__seg"><i></i></span>
+            <button class="showcase__seg" type="button" aria-label="Ir para a funcionalidade 1"><i></i></button>
+            <button class="showcase__seg" type="button" aria-label="Ir para a funcionalidade 2"><i></i></button>
+            <button class="showcase__seg" type="button" aria-label="Ir para a funcionalidade 3"><i></i></button>
+            <button class="showcase__seg" type="button" aria-label="Ir para a funcionalidade 4"><i></i></button>
           </div>
         </div>
       </div>
