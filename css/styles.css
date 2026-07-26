@@ -173,18 +173,10 @@ a { color: inherit; text-decoration: none; }
 /* ============================================================
    Nav
    ============================================================ */
+/* menu fica apenas no topo da página — não acompanha o scroll */
 .nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 9000;
-  padding-block: 1.1rem;
-  transition: background-color 0.4s ease, backdrop-filter 0.4s ease, padding 0.4s ease, border-color 0.4s ease;
-  border-bottom: 1px solid transparent;
-}
-.nav.is-scrolled {
-  background: rgba(5, 6, 15, 0.7);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border-bottom-color: var(--line);
-  padding-block: 0.8rem;
+  position: absolute; top: 0; left: 0; right: 0; z-index: 9000;
+  padding-block: 1.4rem;
 }
 .nav__inner {
   width: var(--container); margin-inline: auto;
@@ -376,7 +368,7 @@ a { color: inherit; text-decoration: none; }
    Showcase (pinned phones)
    ============================================================ */
 .showcase { padding-block: 0; }
-.showcase__pin { min-height: 100svh; display: flex; align-items: center; }
+.showcase__pin { min-height: 100svh; display: flex; align-items: center; position: relative; }
 .showcase__layout {
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
@@ -405,14 +397,32 @@ a { color: inherit; text-decoration: none; }
 }
 .showcase__step p { color: var(--text-muted); max-width: 46ch; }
 
-.showcase__progress { display: flex; gap: 0.5rem; margin-top: 2.5rem; }
-.showcase__progress span {
-  width: 34px; height: 3px; border-radius: 3px;
-  background: var(--line-strong);
-  position: relative; overflow: hidden;
-  transition: background-color 0.4s ease;
+/* barra de progresso full-width: preenche até trocar de funcionalidade */
+.showcase__bar {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  padding: 0 clamp(1.2rem, 4vw, 2.8rem) 1.8rem;
+  display: flex; align-items: center; gap: 1.4rem;
 }
-.showcase__progress span.is-active { background: var(--brand); box-shadow: 0 0 10px rgba(70, 95, 255, 0.7); }
+.showcase__barlabel {
+  font-size: 0.68rem; letter-spacing: 0.18em;
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+.showcase__barlabel #stepNow { color: var(--brand-soft); font-weight: 700; }
+.showcase__segments { display: flex; gap: 0.6rem; flex: 1; }
+.showcase__seg {
+  flex: 1; height: 4px; border-radius: 4px;
+  background: rgba(160, 172, 255, 0.12);
+  overflow: hidden;
+}
+.showcase__seg i {
+  display: block; height: 100%; width: 100%;
+  border-radius: 4px;
+  background: var(--grad);
+  box-shadow: 0 0 12px rgba(70, 95, 255, 0.65);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+}
 
 .showcase__phone {
   position: relative;
@@ -440,9 +450,29 @@ a { color: inherit; text-decoration: none; }
 
 .showcase__stepimg { display: none; }
 
+/* mobile: mesmo efeito pinado do desktop — celular fixo, conteúdo troca no scroll */
 @media (max-width: 880px) {
+  .showcase__layout {
+    grid-template-columns: 1fr;
+    gap: 1.4rem;
+    padding-block: 5rem 2.5rem;
+    align-items: start;
+  }
+  .showcase__phone { order: -1; min-height: 0; }
+  .showcase__glow { width: 85%; }
+  .showcase__img { height: min(38svh, 360px); }
+  .showcase__steps { min-height: 11.5rem; }
+  .showcase__step h3 { font-size: 1.35rem; margin-bottom: 0.7rem; }
+  .showcase__step p { font-size: 0.95rem; }
+  .showcase__hint { display: none; }
+  .showcase__bar { padding-bottom: 1.2rem; gap: 1rem; }
+}
+
+/* fallback sem animação: etapas empilhadas com a tela do app dentro de cada uma */
+@media (prefers-reduced-motion: reduce) {
   .showcase__pin { min-height: 0; }
   .showcase__layout { grid-template-columns: 1fr; padding-block: var(--section-pad); }
+  .showcase__phone, .showcase__bar { display: none; }
   .showcase__steps { min-height: 0; }
   .showcase__step {
     position: static; opacity: 1; visibility: visible; transform: none;
@@ -450,8 +480,6 @@ a { color: inherit; text-decoration: none; }
     margin-bottom: 3.4rem;
   }
   .showcase__step:last-child { margin-bottom: 0; }
-  .showcase__progress { display: none; }
-  .showcase__phone { display: none; }
   .showcase__stepimg {
     display: block;
     width: min(60vw, 250px);

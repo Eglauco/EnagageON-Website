@@ -26,7 +26,7 @@
 
   function scrollToTarget(target) {
     if (lenis) {
-      lenis.scrollTo(target, { offset: -70, duration: 1.4 });
+      lenis.scrollTo(target, { duration: 1.4 });
     } else {
       const el = document.querySelector(target);
       if (el) el.scrollIntoView({ behavior: "auto", block: "start" });
@@ -174,16 +174,8 @@
   }
 
   /* ------------------------------------------------------------
-     Nav state + scroll progress
+     Scroll progress
   ------------------------------------------------------------ */
-  const nav = document.getElementById("nav");
-  ScrollTrigger.create({
-    start: 60,
-    onUpdate: (self) => nav.classList.toggle("is-scrolled", self.scroll() > 60),
-    onEnter: () => nav.classList.add("is-scrolled"),
-    onLeaveBack: () => nav.classList.remove("is-scrolled"),
-  });
-
   gsap.to("#scrollProgress", {
     scaleX: 1,
     ease: "none",
@@ -353,7 +345,8 @@
   ------------------------------------------------------------ */
   const steps = gsap.utils.toArray(".showcase__step");
   const phones = gsap.utils.toArray(".showcase__img");
-  const ticks = gsap.utils.toArray(".showcase__progress span");
+  const segs = gsap.utils.toArray(".showcase__seg i");
+  const stepNow = document.getElementById("stepNow");
   let currentStep = 0;
 
   function setStep(i) {
@@ -361,11 +354,11 @@
     currentStep = i;
     steps.forEach((s, k) => s.classList.toggle("is-active", k === i));
     phones.forEach((p, k) => p.classList.toggle("is-active", k === i));
-    ticks.forEach((t, k) => t.classList.toggle("is-active", k === i));
+    if (stepNow) stepNow.textContent = String(i + 1).padStart(2, "0");
   }
 
   const mm = gsap.matchMedia();
-  mm.add("(min-width: 881px) and (prefers-reduced-motion: no-preference)", () => {
+  mm.add("(prefers-reduced-motion: no-preference)", () => {
     const st = ScrollTrigger.create({
       trigger: "#showcasePin",
       start: "top top",
@@ -373,25 +366,17 @@
       pin: true,
       scrub: false,
       onUpdate: (self) => {
-        const i = Math.min(steps.length - 1, Math.floor(self.progress * steps.length));
+        const p = self.progress;
+        const i = Math.min(steps.length - 1, Math.floor(p * steps.length));
         setStep(i);
+        // cada segmento preenche durante a etapa correspondente
+        segs.forEach((seg, k) => {
+          const fill = Math.max(0, Math.min(1, p * steps.length - k));
+          gsap.set(seg, { scaleX: fill });
+        });
       },
     });
     return () => st.kill();
-  });
-
-  // mobile: sem pin — cada etapa revela ao entrar na tela
-  mm.add("(max-width: 880px) and (prefers-reduced-motion: no-preference)", () => {
-    const triggers = steps.map((step) => {
-      gsap.set(step, { opacity: 0, y: 36 });
-      return ScrollTrigger.create({
-        trigger: step,
-        start: "top 88%",
-        once: true,
-        onEnter: () => gsap.to(step, { opacity: 1, y: 0, duration: 0.9, ease: "power3.out" }),
-      });
-    });
-    return () => triggers.forEach((t) => t.kill());
   });
 
   /* ------------------------------------------------------------
