@@ -753,6 +753,11 @@ a { color: inherit; text-decoration: none; }
   margin-top: 1.5rem;
   font-size: 0.62rem; letter-spacing: 0.2em; color: var(--text-dim);
 }
+.footer__privacylink {
+  text-transform: uppercase;
+  transition: color 0.25s ease;
+}
+.footer__privacylink:hover { color: var(--text); }
 
 /* ============================================================
    Reveal defaults (JS toggles)

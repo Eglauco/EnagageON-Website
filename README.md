@@ -17,9 +17,17 @@ Depois acesse `http://localhost:5173`.
 | Arquivo | O que contém |
 |---|---|
 | `index.html` | Todo o conteúdo/textos das seções |
+| `privacidade.html` | Política de Privacidade (LGPD + Google Play) — página estática, sem JS |
 | `css/styles.css` | Design system (cores, fontes) e estilos — tokens no `:root` no topo |
-| `js/main.js` | Animações: preloader, ECG do hero, showcase pinado, painel de risco, contadores |
+| `css/privacidade.css` | Estilos adicionais da página de privacidade |
+| `js/main.js` | Animações: preloader, ECG do hero, carrossel de funcionalidades, painel de risco, contadores |
 | `assets/` | Logo, prints do app e do portal |
+
+## Política de Privacidade (link para o Google Play)
+
+- URL em produção: `https://<seu-dominio>/privacidade.html` — é esse link que vai no campo "Política de Privacidade" do Play Console. Para o requisito de exclusão de conta do Data Safety, use `https://<seu-dominio>/privacidade.html#exclusao-de-conta`.
+- ⚠️ **E-mail placeholder**: a página usa `privacidade@engageon.com.br` como canal de privacidade/DPO (6 ocorrências em `privacidade.html`). Antes de enviar o link ao Google, crie essa caixa de e-mail ou substitua pelo endereço real (busque por `privacidade@engageon.com.br` no arquivo).
+- Quando a empresa designar formalmente um Encarregado (DPO) — pessoa física ou jurídica —, atualize o nome na seção 16 da página.
 
 ## Decisões de design
 
