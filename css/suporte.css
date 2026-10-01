@@ -1,0 +1,137 @@
+/* ============================================================
+   ENGAGEON — Suporte
+   Estilos adicionais desta página (tokens vêm do styles.css;
+   layout base de conteúdo vem do privacidade.css)
+   ============================================================ */
+
+.support-hero__sub {
+  color: var(--text-muted);
+  max-width: 56ch;
+  font-size: clamp(1rem, 1.4vw, 1.1rem);
+}
+.support-hero__sub strong { color: var(--text); }
+
+/* ============================================================
+   Card de contato
+   ============================================================ */
+.support-card {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: clamp(1.6rem, 4vw, 3rem);
+  align-items: center;
+  background: linear-gradient(180deg, var(--surface-2), var(--surface));
+  border: 1px solid var(--line-strong);
+  border-radius: calc(var(--radius) + 4px);
+  padding: clamp(1.6rem, 4vw, 2.8rem);
+  box-shadow: 0 40px 90px -60px rgba(70, 95, 255, 0.3);
+}
+.support-card h2 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.25rem, 2.4vw, 1.6rem);
+  line-height: 1.3;
+  margin-bottom: 0.8rem;
+}
+.support-card__info p { color: var(--text-muted); margin-bottom: 1.1rem; }
+.support-card__info strong { color: var(--text); }
+.support-card__tips {
+  list-style: none;
+  display: grid;
+  gap: 0.55rem;
+}
+.support-card__tips li {
+  position: relative;
+  padding-left: 1.6rem;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+.support-card__tips li::before {
+  content: "";
+  position: absolute; left: 0; top: 0.62em;
+  width: 14px; height: 2px;
+  background: var(--grad);
+  border-radius: 2px;
+}
+
+.support-card__action {
+  display: grid;
+  justify-items: center;
+  gap: 0.9rem;
+}
+.support-card__btn {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: clamp(0.85rem, 1.6vw, 1rem);
+  letter-spacing: 0.02em;
+  color: #fff;
+  background: var(--grad);
+  border-radius: 100px;
+  padding: 1.1rem 1.9rem;
+  text-align: center;
+  box-shadow: 0 14px 40px -12px rgba(70, 95, 255, 0.65);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow-wrap: anywhere;
+}
+.support-card__btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 50px -12px rgba(70, 95, 255, 0.85);
+}
+.support-card__hint {
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  color: var(--text-muted);
+}
+
+/* ============================================================
+   FAQ (details nativo, sem JS)
+   ============================================================ */
+.support-faq .privacy-section__body { display: grid; gap: 0.9rem; }
+.support-faq details {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 0;
+  transition: border-color 0.3s ease;
+}
+.support-faq details[open],
+.support-faq details:hover { border-color: rgba(70, 95, 255, 0.45); }
+.support-faq summary {
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.2rem 1.5rem;
+  color: var(--text);
+  font-weight: 700;
+  font-size: 1rem;
+}
+.support-faq summary::-webkit-details-marker { display: none; }
+.support-faq summary::after {
+  content: "+";
+  content: "+" / ""; /* alternativa vazia: leitores de tela não anunciam o "+" decorativo */
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: 1.2rem;
+  color: var(--brand-soft);
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+.support-faq details[open] summary::after { transform: rotate(45deg); }
+.support-faq details p {
+  padding: 0 1.5rem 1.3rem;
+  margin: 0;
+  color: var(--text-muted);
+}
+
+/* ============================================================
+   Responsivo
+   ============================================================ */
+@media (max-width: 760px) {
+  .support-card { grid-template-columns: 1fr; }
+  .support-card__action { justify-items: start; }
+  .support-card__btn { width: 100%; }
+  .support-card__hint { justify-self: center; }
+}
