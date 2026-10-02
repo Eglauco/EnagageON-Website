@@ -19,6 +19,7 @@ Depois acesse `http://localhost:5173`.
 | `index.html` | Todo o conteúdo/textos das seções |
 | `privacidade.html` | Política de Privacidade (LGPD + Google Play) — página estática, sem JS |
 | `suporte/index.html` | Central de suporte (Support URL exigida pela Apple) — página estática, sem JS |
+| `excluir-conta/index.html` | Solicitação de exclusão de conta (exigência do Data Safety do Google Play) |
 | `css/styles.css` | Design system (cores, fontes) e estilos — tokens no `:root` no topo |
 | `css/privacidade.css` | Estilos adicionais da página de privacidade (reusados também no suporte) |
 | `css/suporte.css` | Estilos adicionais da página de suporte |
@@ -27,8 +28,9 @@ Depois acesse `http://localhost:5173`.
 
 ## Política de Privacidade (link para o Google Play)
 
-- URL em produção: `https://<seu-dominio>/privacidade.html` — é esse link que vai no campo "Política de Privacidade" do Play Console. Para o requisito de exclusão de conta do Data Safety, use `https://<seu-dominio>/privacidade.html#exclusao-de-conta`.
-- ⚠️ **E-mail placeholder**: a página usa `privacidade@engageon.com.br` como canal de privacidade/DPO (6 ocorrências em `privacidade.html`). Antes de enviar o link ao Google, crie essa caixa de e-mail ou substitua pelo endereço real (busque por `privacidade@engageon.com.br` no arquivo).
+- URL em produção: `https://<seu-dominio>/privacidade.html` — é esse link que vai no campo "Política de Privacidade" do Play Console.
+- **Exclusão de conta (Data Safety do Play)**: use `https://<seu-dominio>/excluir-conta/` — página dedicada de solicitação de exclusão (`excluir-conta/index.html`), com canal `suporte@futurize.com.br` e prazo de conclusão de até 30 dias.
+- ⚠️ **E-mail placeholder**: a política usa `privacidade@engageon.com.br` como canal de DPO/direitos do titular. Antes de enviar o link ao Google, crie essa caixa de e-mail ou substitua pelo endereço real (busque por `privacidade@engageon.com.br` em `privacidade.html`). O canal de exclusão de conta já usa o e-mail real `suporte@futurize.com.br`.
 - Quando a empresa designar formalmente um Encarregado (DPO) — pessoa física ou jurídica —, atualize o nome na seção 16 da página.
 
 ## Suporte (Support URL para a Apple)
